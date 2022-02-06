@@ -5,7 +5,7 @@ services:
     image: backend_django
     build:
       context: .
-      dockerfile: ../backend/Dockerfile
+      dockerfile: ./backend/Dockerfile
     ports:
       - 8000:8000
     environment:
@@ -19,7 +19,7 @@ services:
 
 
     volumes:
-      - ../:/workspace
+      - ..:/workspace
       
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
