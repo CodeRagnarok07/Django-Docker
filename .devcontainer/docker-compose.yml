@@ -14,12 +14,13 @@ services:
       DB_USER: postgres
       DB_NAME: postgres
       DB_HOST: db
+      
       DB_PASSWORD: 123123 # LocalPassword
       ALLOWED_HOSTS: 127.0.0.1, localhost
 
 
     volumes:
-      - ../:/workspace
+      - ..:/workspace
       
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity
@@ -31,6 +32,11 @@ services:
     image: postgres
     restart: unless-stopped
     ports: 
-      - 5432:5432
+      - 5432:5432      
     environment:
-      POSTGRES_PASSWORD: 123123 # LocalPassword
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+
