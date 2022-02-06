@@ -1,16 +1,14 @@
 
-1.- Crea un archivo manage.py vacio
-2.- shif + p *docker add python* selecciona el archivo manage.py creado
-3.- shif + p *add devcontainer* > from docker-compose.yml 
 
-
-
-Rquerimientos:
+#### Rquerimientos:
 
 1. instalar docker Destokc [https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 2. Intalar los plugins de vscode  
     1. [https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker](https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-docker)
     2. [https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers)
+
+
+# Paso a paso 
 
 1. en el entorno de desarrollo crea una carpeta `.devcontainer` que contendrá los siguientes archivos
     
@@ -174,3 +172,12 @@ Rquerimientos:
 [GitHub - 18F/docker-compose-django-react: A strawman set up for using both Django and React in a new app](https://github.com/18F/docker-compose-django-react)
 
 [GitHub - qubitron/django-react-devcontainer: Tutorial + sample code for setting up a django + react +postgres development container](https://github.com/qubitron/django-react-devcontainer)
+
+
+
+# creacion de archivos automaticamente con vscode
+
+1.- Crea un archivo manage.py vacio
+2.- shif + p *docker add python* selecciona el archivo manage.py creado
+3.- shif + p *add devcontainer* > from docker-compose.yml 
+
