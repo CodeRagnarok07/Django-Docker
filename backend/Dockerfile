@@ -10,11 +10,11 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install pip requirements 
-# COPY $(pwd)/../requirements.txt /code/
+# COPY .requirements.txt /code/
 # RUN python -m pip install -r requirements.txt
 
-WORKDIR /code
-COPY . /code/
+WORKDIR /backend
+COPY . /backend/
 
 # Creates a non-root user with an explicit UID and adds permission to access the /app folder
 # For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers

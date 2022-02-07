@@ -1,11 +1,36 @@
 version: '3.4'
 
 services:
-  backend_django:
-    image: backend_django
+  redis:
+    restart: always
+    image: redis:5
+    ports:
+      - "6379:6379"
+    networks:
+      - db-net
+
+  db:    
+    restart: always
+    #restart: unless-stopped
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports: 
+      - 5432:5432     # para que sea visible en nuestro entorno local 
+    environment:
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    networks:
+      - db-net
+
+  backend:    
+    #image: backend_django
+    restart: always
+    container_name: backend
     build:
-      context: .
-      dockerfile: ../backend/Dockerfile
+      context: ./backend/
+      dockerfile: .Dockerfile
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity   
     #command: python manage.py runserver 0.0.0.0:8000
@@ -20,16 +45,30 @@ services:
     volumes:
       - ..:/workspace
     depends_on:
-      - postgresdb
+      - db
+      - redis
+    networks:
+      - db-net
 
-  postgresdb:    
-    image: postgres
-    restart: unless-stopped
+    
+  frontend:
+    restart: always
+    command : npm start
+    container_name: frontend
+    build:
+      context: ./frontend/
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
     volumes:
-      - ./data/db:/var/lib/postgresql/data
-    ports: 
-      - 5432:5432     # para que sea visible en nuestro entorno local 
-    environment:
-      - POSTGRES_NAME=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - ..:/workspace
+    stdin_open: true
+    depends_on:
+      - backend
+    networks:
+      - db-net
+
+
+networks:
+  db-net:
+    driver: bridge
