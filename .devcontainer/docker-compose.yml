@@ -28,9 +28,8 @@ services:
     #image: backend_django
     restart: always
     container_name: backend
-    build:
-      context: ./backend/
-      dockerfile: .Dockerfile
+    build:      
+      dockerfile: ../backend/Dockerfile
     # Overrides default command so things don't shut down after the process ends.
     command: sleep infinity   
     #command: python manage.py runserver 0.0.0.0:8000
@@ -55,9 +54,8 @@ services:
     restart: always
     command : npm start
     container_name: frontend
-    build:
-      context: ./frontend/
-      dockerfile: Dockerfile
+    build:      
+      dockerfile: ../frontend/Dockerfile
     ports:
       - "3000:3000"
     volumes:
