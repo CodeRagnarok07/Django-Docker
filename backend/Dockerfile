@@ -10,7 +10,7 @@ ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
 
 # Install pip requirements 
-# COPY .requirements.txt /code/
+COPY frontend/requirements.txt /backend/
 # RUN python -m pip install -r requirements.txt
 
 WORKDIR /backend
