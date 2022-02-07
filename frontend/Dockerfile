@@ -4,6 +4,8 @@ WORKDIR /frontend
 
 
 COPY frontend/package.json /frontend/
+
+
 RUN npm install 
 
 COPY frontend/ /frontend/
